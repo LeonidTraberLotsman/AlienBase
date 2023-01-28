@@ -16,7 +16,6 @@ public class CubeMover : MonoBehaviour
     public Text GameOverText;   
 
     Rigidbody body;
-    // Start is called before the first frame update
     void Start()
     {
         GameOverText.enabled = false;   
@@ -41,7 +40,23 @@ public class CubeMover : MonoBehaviour
         my_head.CanMove = false;
         Cursor.lockState = CursorLockMode.None;
     }
+    public void Heal(int Health)
+    {
+        Debug.Log("Heal");
 
+        hp += Health;
+        if (hp > 100) hp = 100;
+        ShowHP();
+    }
+
+    public void AddAmmo(int AmmoToAdd)
+    {
+        Debug.Log("BagAmmo");
+
+        my_head.BagAmmo += AmmoToAdd;
+
+        my_head.ShowAmmo();
+    }
     public void Damage(int dam)
     {
         hp -= dam;
@@ -51,7 +66,6 @@ public class CubeMover : MonoBehaviour
         }
         ShowHP();
     }
-    // Update is called once per frame
     void Update()
     {
         if (CanMove)

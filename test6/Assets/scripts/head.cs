@@ -48,7 +48,7 @@ public class head : MonoBehaviour
 
         isReloading = false;
     }
-    void ShowAmmo()  
+    public void ShowAmmo()  
     {
         AmmoText.text = CurAmmo.ToString() +"/"+BagAmmo.ToString();  
     } 

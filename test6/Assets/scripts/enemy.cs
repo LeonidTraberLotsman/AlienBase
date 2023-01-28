@@ -12,7 +12,6 @@ public class enemy : MonoBehaviour
 
     public int HP = 100;
 
-    // Start is called before the first frame update
     void Start()
     {
            agent = GetComponent<NavMeshAgent>();
