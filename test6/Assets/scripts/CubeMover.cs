@@ -7,7 +7,11 @@ public class CubeMover : MonoBehaviour
 {
     public int hp = 100;
     public Text HPtext;
-    bool CanMove = true;
+    public bool CanMove = true;
+
+   
+
+    public bool jumpTrueAndFalse = true;
 
 
     public Button RestartButton; 
@@ -92,9 +96,29 @@ public class CubeMover : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                body.AddForce(transform.up * 500);
-
+                if (jumpTrueAndFalse == true)
+                {
+                    body.AddForce(transform.up * 500);
+                    jumpTrueAndFalse = false;
+                }
             }
         }
     }
+
+
+    public void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.layer == 3)
+        {
+
+            jumpTrueAndFalse = true;
+        }
+    }
+    //public void OnTriggerEnter(Collision col)
+    //    if (col.gameObject.layer == 8)
+    //    {
+
+    //        body.AddForce(Vector3.up * 500);
+    //    }
+    //}
 }

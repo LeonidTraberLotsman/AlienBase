@@ -68,6 +68,26 @@ public class head : MonoBehaviour
             playerBody.Rotate(Vector3.up * mouseX);
 
             if (Input.GetKeyDown(KeyCode.R)){StartReloiding();}
+            if (Input.GetKeyDown(KeyCode.E)){
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    Debug.Log(hit.transform.name);
+                    inter that_inter = hit.transform.GetComponent<inter>();
+                    if (that_inter)
+                    {
+
+
+                        //that_enemy.Die();//Shot on dog
+                        that_inter.Interact();//Shot on dog
+
+
+
+
+                    }
+                }
+            }
+            
 
             if (Input.GetKeyDown(KeyCode.Mouse0)&&CurAmmo>0&&!isReloading)
             {
