@@ -16,7 +16,7 @@ public class interRigid : inter
         
     }
 
-    public override void Interact()
+    public override void Interact(CubeMover mover)
     {
         GetComponent<Rigidbody>().isKinematic=false;
     }

@@ -79,7 +79,7 @@ public class head : MonoBehaviour
 
 
                         //that_enemy.Die();//Shot on dog
-                        that_inter.Interact();//Shot on dog
+                        that_inter.Interact(playerBody.GetComponent<CubeMover>());//Shot on dog
 
 
 

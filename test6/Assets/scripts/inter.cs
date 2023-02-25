@@ -16,7 +16,7 @@ public class inter : MonoBehaviour
         
     }
 
-    public virtual void Interact()
+    public virtual void Interact(CubeMover mover)
     {
         Debug.Log("Interact");
     }
