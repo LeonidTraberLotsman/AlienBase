@@ -8,7 +8,12 @@ public class CoverPlace : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
+            
+            BattleManager battle = GameObject.FindGameObjectsWithTag("GreatManager")[0].GetComponent<BattleManager>();
         
+        if(!battle.covers.Contains(this)) battle.covers.Add(this);
+       
     }
 
     // Update is called once per frame

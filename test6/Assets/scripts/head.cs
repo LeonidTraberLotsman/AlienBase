@@ -98,13 +98,16 @@ public class head : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
                     Debug.Log(hit.transform.name);
-                    enemy that_enemy = hit.transform.GetComponent<enemy>();
+
+                    Transform target = AdecvEnemy.GetParent(hit.transform);
+
+                    AdecvEnemy that_enemy = target.GetComponent<AdecvEnemy>();
                     if (that_enemy)
                     {
 
 
                         //that_enemy.Die();//Shot on dog
-                        that_enemy.Damage(10);//Shot on dog
+                        that_enemy.GetDamage(10);//Shot on dog
 
 
 

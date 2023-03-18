@@ -5,33 +5,114 @@ using UnityEngine.AI;
 
 public class AdecvEnemy : MonoBehaviour
 {
+
+    public int HP = 100;
+
+    public GameObject DebugCube;
+
+
+    public enum Role
+    {
+        common,
+        insane,
+        afraid,
+        fresh
+    }
+    public Role role=Role.fresh;
+
+
+
+    public float speed;
     public BattleManager battle;
     public Transform Player;
     private NavMeshAgent NMAgent;
     CoverPlace my_cover;
+    public List<AudioClip> clips;
 
+    AudioSource source;
 
     Coroutine  my_routine;
-    Coroutine Dela_routine;
+    Coroutine Tactic_routine;
     Coroutine Cover_routine;
+
+    public void ChangeRole(Role new_role)
+    {
+        if (role == new_role) return;
+        if(Tactic_routine!=null) StopCoroutine(Tactic_routine);
+
+        role = new_role;
+        if (new_role == Role.common)
+        {
+            Tactic_routine = StartCoroutine(CommonTactic());
+            DebugCube.GetComponent<Renderer>().material.color = Color.blue;
+        }
+        if (new_role == Role.insane)
+        {
+            Tactic_routine = StartCoroutine(InsaneTactic());
+            DebugCube.GetComponent<Renderer>().material.color = Color.red;
+        }
+        if (new_role == Role.afraid)
+        {
+            Tactic_routine = StartCoroutine(AfraidTactic());
+            DebugCube.GetComponent<Renderer>().material.color = Color.black;
+        }
+    }
+
     private void Awake()
     {
+        source = GetComponent<AudioSource>();
+        if (battle == null)
+        {
+           
+            battle = GameObject.FindGameObjectsWithTag("GreatManager")[0].GetComponent<BattleManager>();
+            if (battle != null)
+            {
+                Player = battle.player;
+
+            }
+        }
+        battle.enemies.Add(this);
+
+
         NMAgent = GetComponent<NavMeshAgent>();
-        Dela_routine=StartCoroutine(Dela());
+        //Tactic_routine=StartCoroutine(CommonTactic());
         if(Cover_routine!=null)StopCoroutine(Cover_routine);
 
     }
 
+    public void GetDamage(int damage)
+    {
+        Die();
+    }
+    void Die()
+    {
+        StopCoroutine(Tactic_routine);
+        NMAgent.speed = 0;
+        NMAgent.enabled = false;
+        transform.Rotate(-Vector3.right * 90, Space.Self);
+        transform.position -= new Vector3(0, 0.65f);
+    }
+
+    public static Transform GetParent(Transform it)
+    {
+        Transform res = it;
+        while (res.parent != null)
+        {
+            res = res.parent;
+        }
+        return res;
+    }
 
     void LeaveCover(){
         if(my_cover!= null) 
         my_cover.CoveredOne=null;
+        my_cover = null;
     }
 
 
     void Start()
     {
-        
+       
     }
 
 
@@ -44,9 +125,10 @@ public class AdecvEnemy : MonoBehaviour
     public IEnumerator TakeCover()
     {
         
-        //Debug.Log(Vector3.Distance()); 
+        Debug.Log(battle); 
         CoverPlace place=battle.GetNearestCover(transform.position);
         place.CoveredOne=this;
+        my_cover = place;
         yield return  ReachPoint(place.transform.position,false);
     }
 
@@ -59,12 +141,18 @@ public class AdecvEnemy : MonoBehaviour
         }
     }
 
-
+    void PlaySound(AudioClip clip)
+    {
+        source.clip = clip;
+        source.Play();
+    }
     public IEnumerator Shoot()
     {
         yield return null;
+        LeaveCover();
         NMAgent.destination = Player.position;
         RaycastHit hitinfo;
+        PlaySound(clips[0]);
         if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
         {
             Debug.Log("Hit Something"); 
@@ -78,21 +166,68 @@ public class AdecvEnemy : MonoBehaviour
         }
     }
 
-    public IEnumerator Dela()
+    public IEnumerator CommonTactic()
     {
-
-        Debug.Log("Dela");
+        yield return new WaitForSeconds(0.6f);
+        Debug.Log("CommonTactic");
         while(true){
             
-            yield return TakeCover();          
-
+            yield return TakeCover();
+            yield return new WaitForSeconds(1);
+            //NMAgent.speed = 0.01f;
+            //NMAgent.destination = Player.position;
             yield return new WaitForSeconds(2);
+            NMAgent.speed = speed;
 
             Coroutine Shoot_routine=StartCoroutine(Shoot());
             yield return new WaitForSeconds(0.6f);
             if(Shoot_routine!= null)StopCoroutine(Shoot_routine);
         }
     }
+
+    public IEnumerator InsaneTactic()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("InsaneTactic");
+        while (true)
+        {
+
+            
+
+            Coroutine Shoot_routine = StartCoroutine(Shoot());
+            yield return new WaitForSeconds(0.6f);
+            if (Shoot_routine != null) StopCoroutine(Shoot_routine);
+        }
+    }
+
+    public IEnumerator AfraidTactic()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("AfraidTactic");
+        while (true)
+        {
+
+        
+            while (Vector3.Distance(Player.transform.position,transform.position)<30)
+            {
+
+                Vector3 d = Player.transform.position - transform.position;
+                NMAgent.destination = transform.position - d;
+                yield return new WaitForSeconds(2);
+
+
+            }
+
+            TakeCover();
+            yield return new WaitForSeconds(Random.Range(0.0f,5.0f));
+            LeaveCover();
+
+            Coroutine Shoot_routine = StartCoroutine(Shoot());
+            yield return new WaitForSeconds(0.6f);
+            if (Shoot_routine != null) StopCoroutine(Shoot_routine);
+        }
+    }
+
 
 
     public IEnumerator Piu()
