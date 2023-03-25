@@ -1,6 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AdecvEnemy
+    - BattleManager
+    - CoverPlace
     - CubeMover
     - GreatGenerator
     - LevelManager
@@ -99,6 +102,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -116,42 +123,54 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2876}
     - Class: 114
-      Script: {instanceID: 3178}
+      Script: {instanceID: 2984}
     - Class: 114
-      Script: {instanceID: 3448}
+      Script: {instanceID: 3180}
     - Class: 114
-      Script: {instanceID: 3666}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 4552}
+      Script: {instanceID: 3668}
     - Class: 114
-      Script: {instanceID: 5064}
+      Script: {instanceID: 4554}
     - Class: 114
-      Script: {instanceID: 5564}
+      Script: {instanceID: 5066}
     - Class: 114
-      Script: {instanceID: 5896}
+      Script: {instanceID: 5566}
     - Class: 114
-      Script: {instanceID: 5966}
+      Script: {instanceID: 5712}
     - Class: 114
-      Script: {instanceID: 6394}
+      Script: {instanceID: 5900}
     - Class: 114
-      Script: {instanceID: 6514}
+      Script: {instanceID: 5970}
     - Class: 114
-      Script: {instanceID: 7238}
+      Script: {instanceID: 6398}
     - Class: 114
-      Script: {instanceID: 7594}
+      Script: {instanceID: 6518}
     - Class: 114
-      Script: {instanceID: 8310}
+      Script: {instanceID: 7064}
+    - Class: 114
+      Script: {instanceID: 7244}
+    - Class: 114
+      Script: {instanceID: 7600}
+    - Class: 114
+      Script: {instanceID: 8316}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -193,21 +212,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2876}
     - Class: 114
-      Script: {instanceID: 3178}
+      Script: {instanceID: 3180}
     - Class: 114
-      Script: {instanceID: 4246}
+      Script: {instanceID: 4248}
     - Class: 114
-      Script: {instanceID: 4514}
+      Script: {instanceID: 4516}
     - Class: 114
-      Script: {instanceID: 5064}
+      Script: {instanceID: 5066}
     - Class: 114
-      Script: {instanceID: 5284}
+      Script: {instanceID: 5286}
     - Class: 114
-      Script: {instanceID: 5564}
+      Script: {instanceID: 5566}
     - Class: 114
-      Script: {instanceID: 5896}
+      Script: {instanceID: 5900}
     - Class: 114
-      Script: {instanceID: 6394}
+      Script: {instanceID: 6398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -435,6 +454,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
+  - hash:
+      serializedVersion: 2
+      Hash: b662f43672ca0adbfb5c4ee85c64903b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AdecvEnemy
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -803,6 +828,12 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
+      Hash: 5424424da3c2d9d0cf5ffb6fb250ff6f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CoverPlace
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.State.dll
     namespaceName: Unity.VisualScripting
@@ -939,6 +970,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: PositionAsUV1
+  - hash:
+      serializedVersion: 2
+      Hash: 3682584ae9083d73bd882d0444d231d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleManager
   - hash:
       serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb

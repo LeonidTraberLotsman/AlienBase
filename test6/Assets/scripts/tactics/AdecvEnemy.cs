@@ -8,6 +8,8 @@ public class AdecvEnemy : MonoBehaviour
 
     public int HP = 100;
 
+    public ParticleSystem shot;
+
     public GameObject DebugCube;
 
 
@@ -152,14 +154,29 @@ public class AdecvEnemy : MonoBehaviour
         LeaveCover();
         NMAgent.destination = Player.position;
         RaycastHit hitinfo;
+
+        yield return new WaitForSeconds(0.5f);
         PlaySound(clips[0]);
-        if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
+
+
+
+        Vector3 direct = Player.position - transform.position;
+
+        shot.Play();
+        if (Physics.Raycast (transform.position+transform.forward*3, direct, out hitinfo)) 
+        //if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
         {
+
+            GameObject that_cube = Instantiate(DebugCube);
+            that_cube.transform.position = hitinfo.point;
+
+            Debug.Log("target = " + hitinfo.transform.name);
             Debug.Log("Hit Something"); 
             Debug.DrawRay(transform.position, transform.TransformDirection (Vector3.forward) * hitinfo.distance, Color.red);
             CubeMover that_player = hitinfo.transform.GetComponent<CubeMover>();
             if (that_player)
             {
+                yield return new WaitForSeconds(10.6f);
                 that_player.Damage(10);
                 yield return new WaitForSeconds(10.6f);
             }
@@ -168,10 +185,10 @@ public class AdecvEnemy : MonoBehaviour
 
     public IEnumerator CommonTactic()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(5f);
         Debug.Log("CommonTactic");
         while(true){
-            
+
             yield return TakeCover();
             yield return new WaitForSeconds(1);
             //NMAgent.speed = 0.01f;
@@ -180,7 +197,7 @@ public class AdecvEnemy : MonoBehaviour
             NMAgent.speed = speed;
 
             Coroutine Shoot_routine=StartCoroutine(Shoot());
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(5.6f);
             if(Shoot_routine!= null)StopCoroutine(Shoot_routine);
         }
     }
@@ -230,29 +247,5 @@ public class AdecvEnemy : MonoBehaviour
 
 
 
-    public IEnumerator Piu()
-    {
-      
-      yield return null;
 
-
-        while(true){
-        yield return null;
-       RaycastHit hitinfo;
-        NMAgent.destination = Player.position;
-        if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
-        {
-            Debug.Log("Hit Something"); 
-            Debug.DrawRay(transform.position, transform.TransformDirection (Vector3.forward) * hitinfo.distance, Color.red);
-            CubeMover that_player = hitinfo.transform.GetComponent<CubeMover>();
-            if (that_player)
-            {
-                that_player.Damage(10);
-                yield return new WaitForSeconds(10.6f);
-            }
-        }
-
-        }
-        
-    }
 }

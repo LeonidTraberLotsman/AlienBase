@@ -60,20 +60,23 @@
     <Compile Include="Assets\scripts\enemy.cs" />
     <Compile Include="Assets\scripts\greyGenerator\CylinderGreyBuilding.cs" />
     <Compile Include="Assets\scripts\greyGenerator\GreyBuilding.cs" />
+    <Compile Include="Assets\scripts\tactics\AdecvEnemy.cs" />
+    <Compile Include="Assets\scripts\SpawnGridRoad.cs" />
     <Compile Include="Assets\scripts\spawn.cs" />
     <Compile Include="Assets\scripts\greyGenerator\commonGreyBuilding.cs" />
     <Compile Include="Assets\scripts\test.cs" />
     <Compile Include="Assets\scripts\train.cs" />
     <Compile Include="Assets\scripts\later.cs" />
     <Compile Include="Assets\scripts\LevelManager.cs" />
+    <Compile Include="Assets\scripts\tactics\CoverPlace.cs" />
     <Compile Include="Assets\scripts\battery.cs" />
     <Compile Include="Assets\scripts\CubeMover.cs" />
+    <Compile Include="Assets\scripts\tactics\BattleManager.cs" />
     <Compile Include="Assets\scripts\GreatGenerator.cs" />
     <Compile Include="Assets\scripts\inter.cs" />
     <Compile Include="Assets\scripts\inter\Ladder.cs" />
     <Compile Include="Assets\scripts\PhysicTest.cs" />
     <Compile Include="Assets\scripts\head.cs" />
-    <Compile Include="Assets\scripts\SpawnGridRoad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

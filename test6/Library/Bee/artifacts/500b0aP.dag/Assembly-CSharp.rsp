@@ -319,6 +319,9 @@
 "Assets/scripts/PhysicTest.cs"
 "Assets/scripts/spawn.cs"
 "Assets/scripts/SpawnGridRoad.cs"
+"Assets/scripts/tactics/AdecvEnemy.cs"
+"Assets/scripts/tactics/BattleManager.cs"
+"Assets/scripts/tactics/CoverPlace.cs"
 "Assets/scripts/test.cs"
 "Assets/scripts/train.cs"
 -langversion:9.0
