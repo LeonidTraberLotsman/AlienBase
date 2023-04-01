@@ -7,6 +7,9 @@ public class GreatGenerator : MonoBehaviour
     public Transform CityCenter;
     public GameObject road_prefab;
 
+    public GameObject tree_prefab;
+    public int minTreeDistance;
+    public int maxTreeDistance;
 
     public List<Transform> points;
 
@@ -14,6 +17,37 @@ public class GreatGenerator : MonoBehaviour
 
     public List<road_part> roads= new List<road_part>();
     public List<cross_road> crosses= new List<cross_road>();
+
+
+    void SpawnOneTree()
+    {
+        float x = 0;
+        float y = 0;
+        bool OK = true;
+        while (OK)
+        {
+             x = Random.Range(-maxTreeDistance, maxTreeDistance);
+             y = Random.Range(-maxTreeDistance, maxTreeDistance);
+            if (Mathf.Sqrt(x * x + y * y) > minTreeDistance)
+            {
+                OK = false;
+            }
+        }
+        
+
+
+        GameObject newTree = Instantiate(tree_prefab);
+        tree_prefab.transform.position=CityCenter.transform.position+ new Vector3(x,5,y);
+    }
+    public void SpawnTrees()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            SpawnOneTree();
+        }
+        
+    }
+
     public class cross_road
     {
         Vector3 position;
@@ -167,6 +201,7 @@ public class GreatGenerator : MonoBehaviour
     void DoArchitcture() {
 
         GenerateGrid();
+        SpawnTrees();
         //TODO choose 3 points for mac guffins
 
 

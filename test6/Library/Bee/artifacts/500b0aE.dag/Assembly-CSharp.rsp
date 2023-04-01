@@ -359,6 +359,7 @@
 "Assets/scripts/greyGenerator/CylinderGreyBuilding.cs"
 "Assets/scripts/greyGenerator/GreyBuilding.cs"
 "Assets/scripts/head.cs"
+"Assets/scripts/helicopterScript.cs"
 "Assets/scripts/inter.cs"
 "Assets/scripts/inter/interRigid.cs"
 "Assets/scripts/inter/Ladder.cs"

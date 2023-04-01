@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - commonGreyBuilding
     - enemy
     - head
+    - helicopterScript
     - inter
     - interRigid
     - spawn
@@ -22,6 +23,13 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -100,11 +108,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
       Script: {instanceID: 0}
     - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -154,6 +168,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7600}
     - Class: 114
       Script: {instanceID: 8316}
+    - Class: 114
+      Script: {instanceID: 43628}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1020,7 +1036,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 88ca00f86e971b71e7b8926c6bcd4068
+      Hash: 44cb28d75166a1d62a37525cca8173bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GreatGenerator
@@ -1138,8 +1154,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 3239c2664ec8f1cb6b741d6a1f6582d0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: helicopterScript
   platform: 5
   scenePathNames:
   - Assets/Scenes/startMenu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/Unity/10_30lessons/test6/build/test6.exe
+  playerPath: D:/Unity/AlienBase/test6/build/test6.exe
