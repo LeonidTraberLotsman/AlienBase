@@ -2947,7 +2947,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602865253
 GameObject:
@@ -3014,8 +3014,8 @@ MonoBehaviour:
   CityCenter: {fileID: 940855996}
   road_prefab: {fileID: 4052751601128407437, guid: d0def2c28056dd34e85c498731a8b5ea, type: 3}
   tree_prefab: {fileID: 5097570049357495034, guid: f32e24872d710f24e9d92f8a96caaf80, type: 3}
-  minTreeDistance: 600
-  maxTreeDistance: 700
+  minTreeDistance: 200
+  maxTreeDistance: 350
   points:
   - {fileID: 1602865254}
   - {fileID: 1382457273}
@@ -3411,7 +3411,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814637104 stripped
 GameObject:
@@ -3584,7 +3584,7 @@ Transform:
   m_GameObject: {fileID: 1951596820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17, y: 27.2, z: 142}
-  m_LocalScale: {x: 297.90918, y: 19.414148, z: 1}
+  m_LocalScale: {x: 283.51154, y: 19.414148, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

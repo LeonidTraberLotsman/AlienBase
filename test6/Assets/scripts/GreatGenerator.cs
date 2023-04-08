@@ -103,21 +103,21 @@ public class GreatGenerator : MonoBehaviour
             Debug.Log(side);
             bool turned = false;
 
-            Vector3 road_point= new Vector3(0, 0, 30);
+            Vector3 road_point= new Vector3(0, 0, 35);
             if (side == sides.south)
             {
-                road_point = new Vector3(0, 0, -30);
+                road_point = new Vector3(0, 0, -35);
             }
 
             if (side == sides.west)
             {
                 turned = true;
-                road_point = new Vector3(-30, 0, 0);
+                road_point = new Vector3(-35, 0, 0);
             }
             if (side == sides.east)
             {
                 turned = true;
-                road_point = new Vector3(30, 0, 0);
+                road_point = new Vector3(35, 0, 0);
             }
 
             road = gen.spawnRoad(position + road_point, position + 2*road_point,turned, this);
@@ -139,7 +139,7 @@ public class GreatGenerator : MonoBehaviour
 
     public class road_part
     {
-        GameObject road;
+        public GameObject road;
 
         public cross_road first_cross;
         public cross_road second_cross;
@@ -155,13 +155,26 @@ public class GreatGenerator : MonoBehaviour
     
     road_part spawnRoad(Vector3 point, Vector3 new_cross_point,bool turned, cross_road cross)
     {
+
+        foreach (road_part roadT in roads)
+        {
+            if (Vector3.Distance(roadT.road.transform.position, point) < 14)
+            {
+                return null;
+            }
+        }
+
         GameObject LocalRoad = Instantiate(road_prefab);
         LocalRoad.transform.position = point;
 
         if (turned)
         {
             LocalRoad.transform.Rotate(new Vector3(0, 90, 0));
+            LocalRoad.GetComponent<Renderer>().material.color = Color.red;
         }
+
+        
+
 
         road_part road = new road_part(cross, LocalRoad);
 
@@ -170,6 +183,8 @@ public class GreatGenerator : MonoBehaviour
         cross_road second_cross= new cross_road(new_cross_point);
         crosses.Add(second_cross);
         road.second_cross = second_cross;
+
+        spawnGrey(point,turned);
 
         return road;
     }
@@ -187,7 +202,7 @@ public class GreatGenerator : MonoBehaviour
                 road_part r = crosses[n].spawnRoad(this);
                 if (r != null) t = false;
             }
-            
+
         }
 
         cross1.spawnRoad(this);
@@ -207,7 +222,7 @@ public class GreatGenerator : MonoBehaviour
 
         foreach (Transform point in points)
         {
-            spawnGrey(point);
+            spawnGrey(point.position,false);
         }
     
     }
@@ -217,12 +232,21 @@ public class GreatGenerator : MonoBehaviour
         DoArchitcture();
     }
 
-    void spawnGrey(Transform point)
+    void spawnGrey(Vector3 point,bool turned)
     {
-        GameObject building = Instantiate(grey_prefabes[0]);
+        
+        if (turned)
+        {
+            GameObject building = Instantiate(grey_prefabes[Random.Range(0,grey_prefabes.Count)]);
+            building.transform.position = point + new Vector3(0, 0, 25);
+            building.transform.Rotate(Vector3.up * 90);
 
-        building.transform.position = point.position;
+            building.GetComponent<GreyBuilding>().Generate(this);
+        }
+        
 
-        building.GetComponent<GreyBuilding>().Generate(this);
+
+
+        
     }
 }
