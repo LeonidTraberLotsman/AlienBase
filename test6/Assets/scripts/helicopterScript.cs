@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Timeline;
 
 public class helicopterScript : MonoBehaviour
@@ -14,16 +15,70 @@ public class helicopterScript : MonoBehaviour
 
     public Transform RandevousPoint;
 
+    public Text starterText;
+
+
     public GameObject Player;
+    CubeMover mover;
+    Vector3 place;
+
     public GameObject playersHead;
+
+    Coroutine greatStartCoroutine;
+    Coroutine quickStartCoroutine;
     // Start is called before the first frame update
     void Start()
     {
+        mover = Player.GetComponent<CubeMover>();
         animator = GetComponent<Animator>();
         animator.SetBool("ShouldSit", true);
         animator.SetBool("Should", true);
 
-        StartCoroutine(GreatStart());
+        greatStartCoroutine = StartCoroutine(GreatStart());
+        quickStartCoroutine = StartCoroutine(quickStart());
+
+
+    }
+
+    IEnumerator quickStart()
+    {
+        while (!Input.GetKeyUp(KeyCode.Return))
+        {
+            yield return null;
+        }
+        Debug.Log("quickStarted");
+        mover.Lock(true);
+        starterText.enabled = false;
+        Player.transform.position = RandevousPoint.position + Vector3.up * 2;
+        Player.transform.parent = null;
+        my_camera.enabled = false;
+    }
+
+    IEnumerator PreJumpChecker()
+    {
+        yield return null;
+
+
+
+
+        
+
+        while (Vector3.Distance(transform.position, Player.transform.position) < 5)
+        {
+            yield return null;
+        }
+        Player.GetComponent<Rigidbody>().AddForce(-20*Vector3.up);
+        Player.GetComponent<Rigidbody>().drag = 0.1f;
+        Debug.Log("Away");
+        Player.transform.parent = null;
+        animator.SetBool("Should", false);
+
+        if (greatStartCoroutine != null) StopCoroutine(greatStartCoroutine);
+        if (quickStartCoroutine != null) StopCoroutine(quickStartCoroutine);
+
+        yield return new WaitForSeconds(2);
+        yield return Move(transform, place, 4000);
+        StartCoroutine(Waiting());
     }
 
     // Update is called once per frame
@@ -41,9 +96,24 @@ public class helicopterScript : MonoBehaviour
         }
     }
 
+    IEnumerator TextFlow()
+    {
+        starterText.enabled = true;
+
+        for (float i = 0; i < 450; i += 1f)
+        {
+            starterText.gameObject.GetComponent<RectTransform>().position+=new Vector3(0,4);
+            yield return null;
+            
+        }
+        starterText.enabled = false;
+    }
+
     IEnumerator GreatStart()
     {
-
+        mover.Lock(false);
+        StartCoroutine(TextFlow());
+        place = transform.position;
         //Time.timeScale = 7;
         for (int i = 0; i < 50; i++)
         {
@@ -70,27 +140,15 @@ public class helicopterScript : MonoBehaviour
             yield return null;
             my_camera.transform.LookAt(focus);
         }
+        mover.Lock(true);
 
         Destroy(my_camera);
         animator.SetBool("ShouldSit", false);
         Time.timeScale = 1;
-        Vector3 place = transform.position;
+        StartCoroutine(PreJumpChecker());
         yield return Move(transform, RandevousPoint.position+Vector3.up*20, 400);
 
-
-
-
-
-        Player.transform.parent = null;
-        while (Vector3.Distance(transform.position, Player.transform.position) < 10)
-        {
-            yield return null;
-        }
-        animator.SetBool("Should", false);
-
-        yield return new WaitForSeconds(2);
-        yield return Move(transform, place, 4000);
-        StartCoroutine(Waiting());
+        
     }
 
     IEnumerator Waiting()

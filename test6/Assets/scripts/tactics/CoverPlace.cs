@@ -11,7 +11,7 @@ public class CoverPlace : MonoBehaviour
        
             
             BattleManager battle = GameObject.FindGameObjectsWithTag("GreatManager")[0].GetComponent<BattleManager>();
-        
+        //Debug.Log(battle.transform.name);
         if(!battle.covers.Contains(this)) battle.covers.Add(this);
        
     }

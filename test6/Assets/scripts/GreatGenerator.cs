@@ -18,7 +18,7 @@ public class GreatGenerator : MonoBehaviour
     public List<road_part> roads= new List<road_part>();
     public List<cross_road> crosses= new List<cross_road>();
 
-
+    BattleManager battle;
     void SpawnOneTree()
     {
         float x = 0;
@@ -230,6 +230,8 @@ public class GreatGenerator : MonoBehaviour
     void Start()
     {
         DoArchitcture();
+        battle = GetComponent<BattleManager>();
+        StartCoroutine(battle.SpawnCheck());
     }
 
     void spawnGrey(Vector3 point,bool turned)

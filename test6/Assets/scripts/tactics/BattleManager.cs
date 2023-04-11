@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class BattleManager : MonoBehaviour
     public List<AdecvEnemy> insaners;
     public List<AdecvEnemy> afraids;
 
+    public Text debugText;
+
+    public Transform CitySpawnPoint;
+    public GameObject AlienPrefab;
+
+    public void AddText(string textToAdd)
+    {
+        debugText.text += "\n" + textToAdd;
+    }
     public CoverPlace GetNearestCover(Vector3 point){
 
         Debug.Log("GetNearestCover");
@@ -26,10 +36,30 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("там уже кто-то есть");
                     continue;
                     
-                    }//если там уже кто-то есть
-                    else{
-                        Debug.Log(place.CoveredOne);
-                    }
+                }//если там уже кто-то есть
+                else{
+                    Debug.Log(place.CoveredOne);
+                }
+
+            RaycastHit hit;
+            Vector3 lowerPoint = place.transform.position - Vector3.up * 0.5f;
+            Vector3 direct = player.position - (lowerPoint);
+            if (Physics.Raycast(lowerPoint, direct,out hit))
+            {
+
+                Debug.DrawRay(lowerPoint, direct, Color.red);
+                if (hit.transform == player)
+                {
+                    continue;//that cover don't cover from player
+                }
+                else
+                {
+                    //hit.transform.GetComponent<Renderer>().material.color = new Color(0.5f, 0, 0.1f);
+                    //hit.transform.name = "that_one";
+                    //AddText(hit.transform.name);
+                }
+            }
+
 
                 float dist= Vector3.Distance(place.transform.position, point);
                 if(dist<Max){
@@ -41,6 +71,19 @@ public class BattleManager : MonoBehaviour
         Debug.Log("GetNearestCover end");
         return candidate;
 
+    }
+
+    void SpawnOneAlien()
+    {
+        GameObject localAlien = Instantiate(AlienPrefab);
+        localAlien.transform.position = CitySpawnPoint.position;
+    }
+    public void SpawnAliens()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnOneAlien();
+        }
     }
 
     IEnumerator tacticRefresher()
@@ -90,6 +133,13 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+   public IEnumerator SpawnCheck()
+    {
+        yield return new WaitForSeconds(1);
+        SpawnAliens();
+
+    }
     // Start is called before the first frame update
     void Start()
     {

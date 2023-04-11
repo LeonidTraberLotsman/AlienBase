@@ -46,17 +46,17 @@ public class AdecvEnemy : MonoBehaviour
         if (new_role == Role.common)
         {
             Tactic_routine = StartCoroutine(CommonTactic());
-            DebugCube.GetComponent<Renderer>().material.color = Color.blue;
+            DebugCube.GetComponent<Renderer>().material.color =new Color(0,0,1,0.4f) ;
         }
         if (new_role == Role.insane)
         {
             Tactic_routine = StartCoroutine(InsaneTactic());
-            DebugCube.GetComponent<Renderer>().material.color = Color.red;
+            DebugCube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.4f);
         }
         if (new_role == Role.afraid)
         {
             Tactic_routine = StartCoroutine(AfraidTactic());
-            DebugCube.GetComponent<Renderer>().material.color = Color.black;
+            DebugCube.GetComponent<Renderer>().material.color = new Color(0, 0, 0, 0.4f);
         }
     }
 
@@ -136,7 +136,11 @@ public class AdecvEnemy : MonoBehaviour
 
     public IEnumerator ReachPoint(Vector3 point,bool NeedLeavingCover )
     {
-        if(NeedLeavingCover)LeaveCover();
+        float dis = Vector3.Distance(transform.position, point);
+        Vector3 direction = -transform.position + point;
+        Debug.DrawRay(transform.position, direction,new Color(0.5f,0.5f,0,0.5f),dis);
+
+        if (NeedLeavingCover)LeaveCover();
         NMAgent.destination=point;
         while(Vector3.Distance(point,transform.position)>6){
             yield return null;
@@ -160,24 +164,25 @@ public class AdecvEnemy : MonoBehaviour
 
 
 
-        Vector3 direct = Player.position - transform.position;
+        Vector3 direct = Player.position - (transform.position + transform.forward * 3);
 
         shot.Play();
         if (Physics.Raycast (transform.position+transform.forward*3, direct, out hitinfo)) 
         //if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
         {
 
-            GameObject that_cube = Instantiate(DebugCube);
-            that_cube.transform.position = hitinfo.point;
+            //GameObject that_cube = Instantiate(DebugCube);
+            //that_cube.transform.position = hitinfo.point;
 
-            Debug.Log("target = " + hitinfo.transform.name);
-            Debug.Log("Hit Something"); 
+            //battle.AddText("target = " + hitinfo.transform.name);
+            //Debug.Log("Hit Something"); 
             Debug.DrawRay(transform.position, transform.TransformDirection (Vector3.forward) * hitinfo.distance, Color.red);
             CubeMover that_player = hitinfo.transform.GetComponent<CubeMover>();
             if (that_player)
             {
-                yield return new WaitForSeconds(10.6f);
-                that_player.Damage(10);
+               // battle.AddText("0_0");
+                //yield return new WaitForSeconds(10.6f);
+                that_player.Damage(1);
                 yield return new WaitForSeconds(10.6f);
             }
         }

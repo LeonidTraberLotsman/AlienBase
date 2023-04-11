@@ -66,7 +66,7 @@ public class CubeMover : MonoBehaviour
         hp -= dam;
         if (hp < 0)
         {
-            Die();
+            //Die();
         }
         ShowHP();
     }
@@ -108,11 +108,17 @@ public class CubeMover : MonoBehaviour
 
     public void OnCollisionEnter(Collision col)
     {
+
         if (col.gameObject.layer == 3)
         {
-
+            body.drag = 4;
             jumpTrueAndFalse = true;
         }
+    }
+
+    public void Lock(bool state)
+    {
+        CanMove = my_head.CanMove = state;
     }
     //public void OnTriggerEnter(Collision col)
     //    if (col.gameObject.layer == 8)
