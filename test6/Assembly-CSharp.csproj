@@ -72,11 +72,13 @@
     <Compile Include="Assets\scripts\battery.cs" />
     <Compile Include="Assets\scripts\helicopterScript.cs" />
     <Compile Include="Assets\scripts\CubeMover.cs" />
+    <Compile Include="Assets\scripts\greyGenerator\ParkingGreyBuilding.cs" />
     <Compile Include="Assets\scripts\tactics\BattleManager.cs" />
     <Compile Include="Assets\scripts\GreatGenerator.cs" />
     <Compile Include="Assets\scripts\inter.cs" />
     <Compile Include="Assets\scripts\inter\Ladder.cs" />
     <Compile Include="Assets\scripts\PhysicTest.cs" />
+    <Compile Include="Assets\scripts\greyGenerator\LadderHouse.cs" />
     <Compile Include="Assets\scripts\head.cs" />
   </ItemGroup>
   <ItemGroup>

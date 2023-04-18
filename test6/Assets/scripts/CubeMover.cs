@@ -72,12 +72,17 @@ public class CubeMover : MonoBehaviour
     }
     void Update()
     {
+        int speed = 1;
         if (CanMove)
         {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                 speed = 5;
+            }
             if (Input.GetKey(KeyCode.W))
             {
-                body.AddForce(transform.forward * 50);
-
+                body.AddForce(transform.forward * 50*speed);
+               
             }
             if (Input.GetKey(KeyCode.S))
             {

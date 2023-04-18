@@ -358,6 +358,8 @@
 "Assets/scripts/greyGenerator/commonGreyBuilding.cs"
 "Assets/scripts/greyGenerator/CylinderGreyBuilding.cs"
 "Assets/scripts/greyGenerator/GreyBuilding.cs"
+"Assets/scripts/greyGenerator/LadderHouse.cs"
+"Assets/scripts/greyGenerator/ParkingGreyBuilding.cs"
 "Assets/scripts/head.cs"
 "Assets/scripts/helicopterScript.cs"
 "Assets/scripts/inter.cs"

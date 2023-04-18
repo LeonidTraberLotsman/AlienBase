@@ -12,6 +12,7 @@ public class AdecvEnemy : MonoBehaviour
 
     public GameObject DebugCube;
 
+    public Animator animator;
 
     public enum Role
     {
@@ -39,22 +40,26 @@ public class AdecvEnemy : MonoBehaviour
 
     public void ChangeRole(Role new_role)
     {
+
         if (role == new_role) return;
         if(Tactic_routine!=null) StopCoroutine(Tactic_routine);
 
         role = new_role;
         if (new_role == Role.common)
         {
+            transform.name = "common alien";
             Tactic_routine = StartCoroutine(CommonTactic());
             DebugCube.GetComponent<Renderer>().material.color =new Color(0,0,1,0.4f) ;
         }
         if (new_role == Role.insane)
         {
+            transform.name = "Insane alien";
             Tactic_routine = StartCoroutine(InsaneTactic());
             DebugCube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.4f);
         }
         if (new_role == Role.afraid)
         {
+            transform.name = "afraid alien";
             Tactic_routine = StartCoroutine(AfraidTactic());
             DebugCube.GetComponent<Renderer>().material.color = new Color(0, 0, 0, 0.4f);
         }
@@ -88,7 +93,9 @@ public class AdecvEnemy : MonoBehaviour
     }
     void Die()
     {
-        StopCoroutine(Tactic_routine);
+        animator.enabled = false;
+
+        if(Tactic_routine!=null)StopCoroutine(Tactic_routine);
         NMAgent.speed = 0;
         NMAgent.enabled = false;
         transform.Rotate(-Vector3.right * 90, Space.Self);
@@ -106,9 +113,11 @@ public class AdecvEnemy : MonoBehaviour
     }
 
     void LeaveCover(){
-        if(my_cover!= null) 
+        animator.SetBool("Crouch", false);
+        if (my_cover!= null) 
         my_cover.CoveredOne=null;
         my_cover = null;
+        
     }
 
 
@@ -126,12 +135,13 @@ public class AdecvEnemy : MonoBehaviour
 
     public IEnumerator TakeCover()
     {
-        
+        animator.SetBool("Crouch", false);
         Debug.Log(battle); 
         CoverPlace place=battle.GetNearestCover(transform.position);
         place.CoveredOne=this;
         my_cover = place;
         yield return  ReachPoint(place.transform.position,false);
+        animator.SetBool("Crouch", false);
     }
 
     public IEnumerator ReachPoint(Vector3 point,bool NeedLeavingCover )
@@ -142,27 +152,70 @@ public class AdecvEnemy : MonoBehaviour
 
         if (NeedLeavingCover)LeaveCover();
         NMAgent.destination=point;
-        while(Vector3.Distance(point,transform.position)>6){
+
+        animator.SetBool("Walking", true);
+
+        while (Vector3.Distance(point,transform.position)>6){
             yield return null;
         }
+        animator.SetBool("Walking", false);
     }
+
+    bool CanSee()
+    {
+        RaycastHit hitinfo;
+        Vector3 direct = Player.position - (transform.position + transform.forward * 3);
+        if (Physics.Raycast(transform.position + transform.forward * 3, direct, out hitinfo))
+        //if (Physics.Raycast (transform.position, transform.TransformDirection (Vector3.forward), out hitinfo)) 
+        {
+
+            //GameObject that_cube = Instantiate(DebugCube);
+            //that_cube.transform.position = hitinfo.point;
+
+            //battle.AddText("target = " + hitinfo.transform.name);
+            //Debug.Log("Hit Something"); 
+          
+            CubeMover that_player = hitinfo.transform.GetComponent<CubeMover>();
+            if (that_player)
+            {
+                // battle.AddText("0_0");
+                //yield return new WaitForSeconds(10.6f);
+                return true;
+                //yield return new WaitForSeconds(10.6f);
+            }
+        }
+        return false;
+    }
+
 
     void PlaySound(AudioClip clip)
     {
         source.clip = clip;
         source.Play();
     }
+
+    IEnumerator findTheTarget()
+    {
+        yield return null;
+        while (!CanSee())
+        {
+            yield return null;
+            NMAgent.destination = Player.position;
+
+        }
+    }
     public IEnumerator Shoot()
     {
         yield return null;
         LeaveCover();
+        animator.SetBool("Walking", true);
         NMAgent.destination = Player.position;
-        RaycastHit hitinfo;
+        
 
         yield return new WaitForSeconds(0.5f);
         PlaySound(clips[0]);
 
-
+        RaycastHit hitinfo;
 
         Vector3 direct = Player.position - (transform.position + transform.forward * 3);
 
@@ -183,7 +236,7 @@ public class AdecvEnemy : MonoBehaviour
                // battle.AddText("0_0");
                 //yield return new WaitForSeconds(10.6f);
                 that_player.Damage(1);
-                yield return new WaitForSeconds(10.6f);
+                //yield return new WaitForSeconds(10.6f);
             }
         }
     }
@@ -201,15 +254,19 @@ public class AdecvEnemy : MonoBehaviour
             yield return new WaitForSeconds(2);
             NMAgent.speed = speed;
 
+            yield return findTheTarget();
             Coroutine Shoot_routine=StartCoroutine(Shoot());
-            yield return new WaitForSeconds(5.6f);
+            yield return new WaitForSeconds(1.2f);
+            //yield return new WaitForSeconds(5.6f);
             if(Shoot_routine!= null)StopCoroutine(Shoot_routine);
+            
         }
     }
 
     public IEnumerator InsaneTactic()
     {
         yield return new WaitForSeconds(0.5f);
+        animator.SetBool("Walking", true);
         Debug.Log("InsaneTactic");
         while (true)
         {

@@ -13,6 +13,8 @@ public class BattleManager : MonoBehaviour
 
     public Text debugText;
 
+    public int normies = 0;
+
     public Transform CitySpawnPoint;
     public GameObject AlienPrefab;
 
@@ -124,7 +126,7 @@ public class BattleManager : MonoBehaviour
 
             foreach (AdecvEnemy guy in enemies.ToArray())
             {
-                if (!afraids.Contains(guy) && !insaners.Contains(guy)) guy.ChangeRole(AdecvEnemy.Role.common);
+                if (!afraids.Contains(guy) && !insaners.Contains(guy)) { guy.ChangeRole(AdecvEnemy.Role.common); normies++; }
             }
 
             yield return new WaitForSeconds(2);

@@ -6,7 +6,10 @@ ScriptsOnlyBuild:
     - CoverPlace
     - CubeMover
     - GreatGenerator
+    - Ladder
+    - LadderHouse
     - LevelManager
+    - ParkingGreyBuilding
     - battery
     - commonGreyBuilding
     - enemy
@@ -156,13 +159,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6520}
     - Class: 114
-      Script: {instanceID: 7066}
+      Script: {instanceID: 6778}
     - Class: 114
-      Script: {instanceID: 7246}
+      Script: {instanceID: 7068}
     - Class: 114
-      Script: {instanceID: 7602}
+      Script: {instanceID: 7248}
     - Class: 114
-      Script: {instanceID: 8318}
+      Script: {instanceID: 7604}
+    - Class: 114
+      Script: {instanceID: 7828}
+    - Class: 114
+      Script: {instanceID: 7908}
+    - Class: 114
+      Script: {instanceID: 8322}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -180,6 +189,8 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 208
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -879,7 +890,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 3239c2664ec8f1cb6b741d6a1f6582d0
+      Hash: d420048c0a70dcc36df04e99d9eceb60
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: helicopterScript
@@ -945,6 +956,12 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
+      Hash: d5b1253410b1243ce14f2ba5b0bb8ae7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ParkingGreyBuilding
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -987,7 +1004,7 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: 3682584ae9083d73bd882d0444d231d6
+      Hash: 0f851383afab4c886467006735b0a856
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManager
@@ -1105,6 +1122,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhysicTest
+  - hash:
+      serializedVersion: 2
+      Hash: d5b1253410b1243ce14f2ba5b0bb8ae7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LadderHouse
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

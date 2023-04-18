@@ -17,7 +17,7 @@ public class Ladder : inter
         }
         
         active = true;
-        
+        player.GetComponent<Rigidbody>().useGravity = false;
         player.CanMove = false;
         Debug.Log("work2");
     }
@@ -42,6 +42,7 @@ public class Ladder : inter
                 {
                     Debug.Log("up exit ladder");
                     player.CanMove = true;
+                    player.GetComponent<Rigidbody>().useGravity = true;
                     active = false;
                 }
             }
@@ -54,6 +55,7 @@ public class Ladder : inter
                 {
                     Debug.Log("down exit ladder");
                     player.CanMove = true;
+                    player.GetComponent<Rigidbody>().useGravity = true;
                     active = false;
                 }
             }
@@ -62,6 +64,7 @@ public class Ladder : inter
             {
                 Debug.Log("exit ladder");
                 player.CanMove = true;
+                player.GetComponent<Rigidbody>().useGravity = true;
                 active = false;
             }
         }
@@ -70,7 +73,10 @@ public class Ladder : inter
     public override void Interact(CubeMover mover)
     {
         player = mover;
-        //GetComponent<Rigidbody>().isKinematic = false;
+
+        //Debug.Log("name:"+transform.name);
+
+        
         StartCoroutine(Counter());
     }
 }
