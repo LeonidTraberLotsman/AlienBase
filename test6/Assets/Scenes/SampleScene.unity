@@ -2939,13 +2939,14 @@ MonoBehaviour:
   minTreeDistance: 200
   maxTreeDistance: 350
   points:
-  - {fileID: 1602865254}
-  - {fileID: 1382457273}
+  - {x: -1.4851794e-30, y: 8.91e-43, z: 0}
+  - {x: 0, y: 1.996905e-19, z: 8.88e-43}
   grey_prefabes:
   - {fileID: 4206227483381972333, guid: 6674b0edfc093ce4ea17758d7ccbd49b, type: 3}
   - {fileID: 6169343679244352489, guid: 67581d85b907be14d80fb7b86bbb5d6e, type: 3}
   - {fileID: 4951895995848606445, guid: 9b33c8d025afb8f4c984d51f2c816d45, type: 3}
   - {fileID: 7567364795170965032, guid: 3808742a9221faf4ab78042257b7e314, type: 3}
+  RedBuildingPrefab: {fileID: 6059953953123783596, guid: 8299207600a11ec49aa2cebc20484fe0, type: 3}
 --- !u!4 &1623885283
 Transform:
   m_ObjectHideFlags: 0

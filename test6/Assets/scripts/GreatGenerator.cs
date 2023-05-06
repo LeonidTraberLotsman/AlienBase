@@ -11,9 +11,11 @@ public class GreatGenerator : MonoBehaviour
     public int minTreeDistance;
     public int maxTreeDistance;
 
-    public List<Transform> points;
+    public List<Vector3> points;
 
     public List<GameObject> grey_prefabes;
+
+    public GameObject RedBuildingPrefab;
 
     public List<road_part> roads= new List<road_part>();
     public List<cross_road> crosses= new List<cross_road>();
@@ -184,7 +186,9 @@ public class GreatGenerator : MonoBehaviour
         crosses.Add(second_cross);
         road.second_cross = second_cross;
 
-        spawnGrey(point,turned);
+        //spawnGrey(point,turned);
+
+        points.Add(point);
 
         return road;
     }
@@ -218,13 +222,25 @@ public class GreatGenerator : MonoBehaviour
         GenerateGrid();
         SpawnTrees();
         //TODO choose 3 points for mac guffins
+        //for (int i = 0; i < 3; i++)
+        //{
 
+        //    int n = Random.Range(0, points.Count - 1);
 
-        foreach (Transform point in points)
+        //    Debug.Log("Count:" + points.Count.ToString());
+
+        //    Debug.Log("Random:" + n.ToString());
+
+        //    Transform point = points[n];
+        //    SpawnBuilding(point.position, false, RedBuildingPrefab);
+        //    //points.Remove(point);
+        //}
+
+        foreach (Vector3 point in points)
         {
-            spawnGrey(point.position,false);
+            spawnGrey(point, false);
         }
-    
+
     }
 
     void Start()
@@ -234,17 +250,22 @@ public class GreatGenerator : MonoBehaviour
         StartCoroutine(battle.SpawnCheck());
     }
 
-    void spawnGrey(Vector3 point,bool turned)
+
+    void SpawnBuilding(Vector3 point, bool turned,GameObject prefab)
     {
-        
         if (turned)
         {
-            GameObject building = Instantiate(grey_prefabes[Random.Range(0,grey_prefabes.Count)]);
+            GameObject building = Instantiate(prefab);
             building.transform.position = point + new Vector3(0, 0, 25);
             building.transform.Rotate(Vector3.up * 90);
 
             building.GetComponent<GreyBuilding>().Generate(this);
         }
+    }
+    void spawnGrey(Vector3 point,bool turned)
+    {
+
+        SpawnBuilding(point,turned, grey_prefabes[Random.Range(0, grey_prefabes.Count)]);
         
 
 
