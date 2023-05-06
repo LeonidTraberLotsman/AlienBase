@@ -3,8 +3,11 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AdecvEnemy
     - BattleManager
+    - BoomHouseB
+    - CanBeDestroyed
     - CoverPlace
     - CubeMover
+    - Explosion
     - GreatGenerator
     - Ladder
     - LadderHouse
@@ -26,6 +29,14 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -112,6 +123,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -155,30 +168,40 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6146}
     - Class: 114
-      Script: {instanceID: 6400}
+      Script: {instanceID: 6300}
     - Class: 114
-      Script: {instanceID: 6520}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6778}
+      Script: {instanceID: 6478}
     - Class: 114
-      Script: {instanceID: 7068}
+      Script: {instanceID: 6524}
     - Class: 114
-      Script: {instanceID: 7248}
+      Script: {instanceID: 6782}
     - Class: 114
-      Script: {instanceID: 7604}
+      Script: {instanceID: 7072}
     - Class: 114
-      Script: {instanceID: 7828}
+      Script: {instanceID: 7252}
     - Class: 114
-      Script: {instanceID: 7908}
+      Script: {instanceID: 7608}
     - Class: 114
-      Script: {instanceID: 8322}
+      Script: {instanceID: 7832}
+    - Class: 114
+      Script: {instanceID: 7912}
+    - Class: 114
+      Script: {instanceID: 8010}
+    - Class: 114
+      Script: {instanceID: 8328}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
     - Class: 137
+      Script: {instanceID: 0}
+    - Class: 144
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -219,6 +242,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -246,7 +271,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5900}
     - Class: 114
-      Script: {instanceID: 6400}
+      Script: {instanceID: 6402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -476,7 +501,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: b662f43672ca0adbfb5c4ee85c64903b
+      Hash: f167f09d01795a189dfa8608edfe3e73
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AdecvEnemy
@@ -902,6 +927,12 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpAsButtonMessageListener
   - hash:
       serializedVersion: 2
+      Hash: d5b1253410b1243ce14f2ba5b0bb8ae7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BoomHouseB
+  - hash:
+      serializedVersion: 2
       Hash: e09e8bebc0fcd32bb8af1287a6b44816
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -930,6 +961,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 156e9b404e508ccca1f71ac400b84868
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Explosion
   - hash:
       serializedVersion: 2
       Hash: d902029d6af6a1fd5b3cc768bb41882c
@@ -1004,7 +1041,7 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: 0f851383afab4c886467006735b0a856
+      Hash: 049ffbbff2ef3b49d0615fab778cf262
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManager
@@ -1140,6 +1177,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 5d7815592bb106087b5216d8634f3ffa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CanBeDestroyed
   - hash:
       serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744

@@ -14,6 +14,7 @@ public class AdecvEnemy : MonoBehaviour
 
     public Animator animator;
 
+    public Transform center;
     public enum Role
     {
         common,
@@ -23,7 +24,7 @@ public class AdecvEnemy : MonoBehaviour
     }
     public Role role=Role.fresh;
 
-
+    List<Rigidbody> rigidbodies = new List<Rigidbody>();
 
     public float speed;
     public BattleManager battle;
@@ -38,6 +39,16 @@ public class AdecvEnemy : MonoBehaviour
     Coroutine Tactic_routine;
     Coroutine Cover_routine;
 
+    void AddAllRigidbodies(Transform t)
+    {
+        Rigidbody rigidbody = t.GetComponent<Rigidbody>();
+        if (rigidbody != null) rigidbodies.Add(rigidbody);
+
+        for (int i = 0; i < t.childCount; i++)
+        {
+            AddAllRigidbodies(t.GetChild(i));
+        }
+    }
     public void ChangeRole(Role new_role)
     {
 
@@ -98,10 +109,27 @@ public class AdecvEnemy : MonoBehaviour
         if(Tactic_routine!=null)StopCoroutine(Tactic_routine);
         NMAgent.speed = 0;
         NMAgent.enabled = false;
-        transform.Rotate(-Vector3.right * 90, Space.Self);
-        transform.position -= new Vector3(0, 0.65f);
-    }
+        //transform.Rotate(-Vector3.right * 90, Space.Self);
+        //transform.position -= new Vector3(0, 0.65f);
+        GetComponent<Collider>().enabled = false;
+        center.parent = null;
+        foreach (Rigidbody body in rigidbodies)
+        {
+            body.isKinematic = false;
+            body.useGravity = true;
+        }
+        StartCoroutine(MoveCorpse());
 
+    }
+    IEnumerator MoveCorpse()
+    {
+        Rigidbody body = center.GetComponent<Rigidbody>();
+        while (true)
+        {
+            body.AddForce(Vector3.up * 20);
+            yield return null;
+        }
+    }
     public static Transform GetParent(Transform it)
     {
         Transform res = it;
@@ -123,7 +151,13 @@ public class AdecvEnemy : MonoBehaviour
 
     void Start()
     {
-       
+        AddAllRigidbodies(transform);
+
+        foreach (Rigidbody body in rigidbodies)
+        {
+            body.isKinematic = true;
+            body.useGravity = false;
+        }
     }
 
 
