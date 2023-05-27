@@ -59,6 +59,7 @@
     <Compile Include="Assets\scripts\inter\interRigid.cs" />
     <Compile Include="Assets\scripts\enemy.cs" />
     <Compile Include="Assets\scripts\greyGenerator\CylinderGreyBuilding.cs" />
+    <Compile Include="Assets\scripts\Bocha.cs" />
     <Compile Include="Assets\scripts\greyGenerator\GreyBuilding.cs" />
     <Compile Include="Assets\scripts\tactics\AdecvEnemy.cs" />
     <Compile Include="Assets\scripts\SpawnGridRoad.cs" />
@@ -67,7 +68,9 @@
     <Compile Include="Assets\scripts\test.cs" />
     <Compile Include="Assets\scripts\train.cs" />
     <Compile Include="Assets\scripts\later.cs" />
+    <Compile Include="Assets\scripts\RedBuilding.cs" />
     <Compile Include="Assets\scripts\LevelManager.cs" />
+    <Compile Include="Assets\scripts\Tresh.cs" />
     <Compile Include="Assets\scripts\tactics\CoverPlace.cs" />
     <Compile Include="Assets\scripts\battery.cs" />
     <Compile Include="Assets\scripts\helicopterScript.cs" />
@@ -83,6 +86,8 @@
     <Compile Include="Assets\scripts\greyGenerator\LadderHouse.cs" />
     <Compile Include="Assets\scripts\CanBeDestroyed.cs" />
     <Compile Include="Assets\scripts\head.cs" />
+    <Compile Include="Assets\Models\Coin.cs" />
+    <Compile Include="Assets\scripts\helicopter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

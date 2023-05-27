@@ -77,7 +77,7 @@ public class CubeMover : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                 speed = 5;
+                 speed = 15;
             }
             if (Input.GetKey(KeyCode.W))
             {

@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - LadderHouse
     - LevelManager
     - ParkingGreyBuilding
+    - RedBuilding
     - battery
     - commonGreyBuilding
     - enemy
@@ -32,10 +33,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -156,41 +155,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4554}
     - Class: 114
-      Script: {instanceID: 5066}
+      Script: {instanceID: 4846}
     - Class: 114
-      Script: {instanceID: 5566}
+      Script: {instanceID: 5068}
     - Class: 114
-      Script: {instanceID: 5712}
+      Script: {instanceID: 5568}
     - Class: 114
-      Script: {instanceID: 5900}
+      Script: {instanceID: 5716}
     - Class: 114
-      Script: {instanceID: 5970}
+      Script: {instanceID: 5904}
     - Class: 114
-      Script: {instanceID: 6146}
+      Script: {instanceID: 5974}
     - Class: 114
-      Script: {instanceID: 6300}
+      Script: {instanceID: 6150}
     - Class: 114
-      Script: {instanceID: 6402}
+      Script: {instanceID: 6304}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6406}
     - Class: 114
-      Script: {instanceID: 6524}
+      Script: {instanceID: 6482}
     - Class: 114
-      Script: {instanceID: 6782}
+      Script: {instanceID: 6528}
     - Class: 114
-      Script: {instanceID: 7072}
+      Script: {instanceID: 6786}
     - Class: 114
-      Script: {instanceID: 7252}
+      Script: {instanceID: 7076}
     - Class: 114
-      Script: {instanceID: 7608}
+      Script: {instanceID: 7256}
     - Class: 114
-      Script: {instanceID: 7832}
+      Script: {instanceID: 7612}
     - Class: 114
-      Script: {instanceID: 7912}
+      Script: {instanceID: 7836}
     - Class: 114
-      Script: {instanceID: 8010}
+      Script: {instanceID: 7916}
     - Class: 114
-      Script: {instanceID: 8328}
+      Script: {instanceID: 8014}
+    - Class: 114
+      Script: {instanceID: 8332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -263,15 +264,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4516}
     - Class: 114
-      Script: {instanceID: 5066}
+      Script: {instanceID: 5068}
     - Class: 114
-      Script: {instanceID: 5286}
+      Script: {instanceID: 5288}
     - Class: 114
-      Script: {instanceID: 5566}
+      Script: {instanceID: 5568}
     - Class: 114
-      Script: {instanceID: 5900}
+      Script: {instanceID: 5904}
     - Class: 114
-      Script: {instanceID: 6402}
+      Script: {instanceID: 6406}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -753,6 +754,12 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
+      Hash: d5b1253410b1243ce14f2ba5b0bb8ae7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RedBuilding
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -873,6 +880,12 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Tresh
+  - hash:
+      serializedVersion: 2
       Hash: 5424424da3c2d9d0cf5ffb6fb250ff6f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -927,7 +940,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpAsButtonMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d5b1253410b1243ce14f2ba5b0bb8ae7
+      Hash: bbc220e0c9891654baf434b42d2807f3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BoomHouseB
@@ -1089,7 +1102,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 44cb28d75166a1d62a37525cca8173bc
+      Hash: b28ac115fb91e73ea50a5a0dc1c26cad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GreatGenerator
@@ -1179,7 +1192,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 5d7815592bb106087b5216d8634f3ffa
+      Hash: 413506d13c1db965b2f2d7892252e670
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CanBeDestroyed

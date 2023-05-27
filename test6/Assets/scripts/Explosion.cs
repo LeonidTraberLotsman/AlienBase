@@ -18,10 +18,12 @@ public class Explosion : MonoBehaviour
             }
             if (hitColliders[i].CompareTag("CanRB"))
             {
+                hitColliders[i].gameObject.AddComponent<Tresh>();
                 hitColliders[i].gameObject.AddComponent<Rigidbody>();
                 hitColliders[i].GetComponent<Rigidbody>().AddExplosionForce(Force, transform.position, Radius, 3);
             }
         }
+        Destroy(gameObject, 0.1f);
     }
     void OnDrawGizmos()
     {

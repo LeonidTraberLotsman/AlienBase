@@ -5,10 +5,26 @@ using UnityEngine;
 public class CanBeDestroyed : MonoBehaviour
 {
     public Transform destroyed;
-
+    public bool ror;
+    public bool fof = false;
     public void Dead()
     {
-        Instantiate(destroyed, transform.position, transform.rotation); 
+        
+        Transform r =Instantiate(destroyed, transform.position, transform.rotation);
+        r.Rotate(Vector3.up * 90);
         Destroy(gameObject);
     }
+
+
+
+    void Update()
+    {
+        if( fof)
+        {
+            Dead();
+        }
+
+    }    
+        
+
 }

@@ -113,6 +113,19 @@ public class head : MonoBehaviour
 
 
                     }
+                    Bocha demaged = target.GetComponent<Bocha>();
+                    if (demaged)
+                    {
+
+
+
+                        //that_enemy.Die();//Shot on dog
+                        demaged.GetDamage();//Shot on dog
+
+
+
+
+                    }
                 }
             }
         }

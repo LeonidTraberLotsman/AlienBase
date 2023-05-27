@@ -371,6 +371,7 @@
 "Assets/scripts/later.cs"
 "Assets/scripts/LevelManager.cs"
 "Assets/scripts/PhysicTest.cs"
+"Assets/scripts/RedBuilding.cs"
 "Assets/scripts/spawn.cs"
 "Assets/scripts/SpawnGridRoad.cs"
 "Assets/scripts/tactics/AdecvEnemy.cs"

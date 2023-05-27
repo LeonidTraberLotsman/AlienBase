@@ -11,9 +11,28 @@ public class GreatGenerator : MonoBehaviour
     public int minTreeDistance;
     public int maxTreeDistance;
 
+
+    public int d2;
+
     public List<Vector3> points;
+    public List<building_point> build_points= new List<building_point>();
 
     public List<GameObject> grey_prefabes;
+
+    public List<AudioClip> clips;
+    AudioSource source;
+
+    public class building_point
+    {
+
+        public Vector3 point;
+        public bool state;
+        public building_point(Vector3 point, bool state)
+        {
+            this.point = point;
+            this.state = state;
+        }       
+    }
 
     public GameObject RedBuildingPrefab;
 
@@ -123,10 +142,12 @@ public class GreatGenerator : MonoBehaviour
             }
 
             road = gen.spawnRoad(position + road_point, position + 2*road_point,turned, this);
+
             /*road_part north_road;
-        road_part south_road;
-        road_part west_road;
-        road_part east_road;*/
+            road_part south_road;
+            road_part west_road;
+            road_part east_road;*/
+
             if (side == sides.North)north_road = road;
             if (side == sides.south) south_road = road;
             if (side == sides.west) west_road = road;
@@ -187,8 +208,9 @@ public class GreatGenerator : MonoBehaviour
         road.second_cross = second_cross;
 
         //spawnGrey(point,turned);
-
-        points.Add(point);
+        building_point example = new building_point(point, turned);
+        build_points.Add(example);
+        //points.Add(point);
 
         return road;
     }
@@ -214,7 +236,6 @@ public class GreatGenerator : MonoBehaviour
         cross1.spawnRoad(this);
         cross1.spawnRoad(this);
         
-        Debug.Log("Grid");
         
     }
     void DoArchitcture() {
@@ -236,10 +257,14 @@ public class GreatGenerator : MonoBehaviour
         //    //points.Remove(point);
         //}
 
-        foreach (Vector3 point in points)
+        foreach (building_point build in build_points)
         {
-            spawnGrey(point, false);
+            spawnGrey(build.point, build.state);
+            
         }
+        
+        Debug.Log("w" + build_points.Count.ToString());
+
 
     }
 
@@ -248,13 +273,31 @@ public class GreatGenerator : MonoBehaviour
         DoArchitcture();
         battle = GetComponent<BattleManager>();
         StartCoroutine(battle.SpawnCheck());
+
+        source = GetComponent<AudioSource>();
+        StartCoroutine(music());
     }
 
+    IEnumerator music()
+    {
+        while (true)
+        {
+            
+            yield return null;
 
+            foreach(AudioClip item in clips)
+            {
+                source.clip = item;
+                source.Play();
+                yield return new WaitForSeconds(item.length+1);
+            }
+        }
+    }
     void SpawnBuilding(Vector3 point, bool turned,GameObject prefab)
     {
         if (turned)
         {
+            //d++;
             GameObject building = Instantiate(prefab);
             building.transform.position = point + new Vector3(0, 0, 25);
             building.transform.Rotate(Vector3.up * 90);
@@ -265,11 +308,7 @@ public class GreatGenerator : MonoBehaviour
     void spawnGrey(Vector3 point,bool turned)
     {
 
-        SpawnBuilding(point,turned, grey_prefabes[Random.Range(0, grey_prefabes.Count)]);
-        
-
-
-
-        
+        SpawnBuilding(point,!turned, grey_prefabes[Random.Range(0, grey_prefabes.Count)]);
+       
     }
 }
