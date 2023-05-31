@@ -195,7 +195,7 @@ public class GreatGenerator : MonoBehaviour
         if (turned)
         {
             LocalRoad.transform.Rotate(new Vector3(0, 90, 0));
-            LocalRoad.GetComponent<Renderer>().material.color = Color.red;
+            //LocalRoad.GetComponent<Renderer>().material.color = Color.red;
         }
 
         
@@ -245,28 +245,34 @@ public class GreatGenerator : MonoBehaviour
         GenerateGrid();
         SpawnTrees();
         //TODO choose 3 points for mac guffins
-        //for (int i = 0; i < 3; i++)
-        //{
+        int redsToSpawn=3;
+        while(redsToSpawn>0)
+        {
 
-        //    int n = Random.Range(0, points.Count - 1);
+            int n = Random.Range(0, build_points.Count - 1);
 
-        //    Debug.Log("Count:" + points.Count.ToString());
+            Debug.Log("Count:" + build_points.Count.ToString());
 
-        //    Debug.Log("Random:" + n.ToString());
+            Debug.Log("Random:" + n.ToString());
 
-        //    Transform point = points[n];
-        //    SpawnBuilding(point.position, false, RedBuildingPrefab);
-        //    //points.Remove(point);
-        //}
+            building_point build = build_points[n];
+            if (!build.state)
+            {
+                SpawnBuilding(build.point, true, RedBuildingPrefab);
+                redsToSpawn--;
+                build_points.Remove(build);
+            }
+            //points.Remove(point);
+        }
 
         foreach (building_point build in build_points)
         {
             spawnGrey(build.point, build.state);
-            if (!build.state)
-            {
-                GameObject marker = Instantiate(MarkerPrefab);
-                marker.transform.position = build.point;
-            } 
+            //if (!build.state)
+            //{
+            //    GameObject marker = Instantiate(MarkerPrefab);
+            //    marker.transform.position = build.point;
+            //} 
             
         }
         
