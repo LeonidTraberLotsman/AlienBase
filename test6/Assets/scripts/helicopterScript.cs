@@ -18,6 +18,8 @@ public class helicopterScript : MonoBehaviour
     public Text starterText;
 
 
+    public bool EvacuateNeeded = false;
+
     public GameObject Player;
     CubeMover mover;
     Vector3 place;
@@ -153,10 +155,11 @@ public class helicopterScript : MonoBehaviour
 
     IEnumerator Waiting()
     {
-        while (true)
+        while (!EvacuateNeeded)
         {
             yield return Circle();
         }
+        yield return Move(transform, RandevousPoint.position + Vector3.up * 20, 400);
     }
 
     IEnumerator Move(Transform who,Vector3 where,int frames)

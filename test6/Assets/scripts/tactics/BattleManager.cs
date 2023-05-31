@@ -11,7 +11,14 @@ public class BattleManager : MonoBehaviour
     public List<AdecvEnemy> insaners;
     public List<AdecvEnemy> afraids;
 
+    public helicopterScript OurHelicopter;
+    
+    public List<mucgaffin> mucgaffins;
+
+
+
     public Text debugText;
+    public Text TaskText;
 
     public int normies = 0;
 
@@ -88,11 +95,32 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void GetMucgaffin()
+    {
+        Debug.Log("gaf");
+
+        for (int i = 0; i < Random.Range(0,15); i++)
+        {
+            SpawnOneAlien();
+        }
+
+      
+    }
+
     IEnumerator tacticRefresher()
     {
+        
+
+
         yield return null;
         while (true)
         {
+            TaskText.text = "Find super weapon: " + mucgaffins.Count.ToString();
+            if (mucgaffins.Count == 0) 
+            { 
+                TaskText.text = "Evacuate";
+                OurHelicopter.EvacuateNeeded = true;
+            }
             foreach (AdecvEnemy guy in enemies.ToArray())
             {
                 if (guy == null) {

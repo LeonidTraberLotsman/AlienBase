@@ -367,6 +367,7 @@
 "Assets/scripts/inter.cs"
 "Assets/scripts/inter/interRigid.cs"
 "Assets/scripts/inter/Ladder.cs"
+"Assets/scripts/inter/mucgaffin.cs"
 "Assets/scripts/later.cs"
 "Assets/scripts/LevelManager.cs"
 "Assets/scripts/PhysicTest.cs"

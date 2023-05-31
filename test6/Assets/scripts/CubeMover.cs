@@ -66,7 +66,7 @@ public class CubeMover : MonoBehaviour
         hp -= dam;
         if (hp < 0)
         {
-            //Die();
+            Die();
         }
         ShowHP();
     }
