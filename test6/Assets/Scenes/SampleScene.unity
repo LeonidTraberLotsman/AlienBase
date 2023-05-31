@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1635,7 +1635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940855992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.962704, y: 18.972, z: 269}
+  m_LocalPosition: {x: 139, y: 18.972, z: 375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2987,6 +2987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b08b37d641112c468d2aab1929d0c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MarkerPrefab: {fileID: 5464354515243362198, guid: e091b8b0db7b5324385e535d2efb9a0d, type: 3}
   CityCenter: {fileID: 940855996}
   road_prefab: {fileID: 4052751601128407437, guid: d0def2c28056dd34e85c498731a8b5ea, type: 3}
   tree_prefab: {fileID: 5097570049357495034, guid: f32e24872d710f24e9d92f8a96caaf80, type: 3}
@@ -3828,6 +3829,7 @@ GameObject:
   - component: {fileID: 2139118097}
   - component: {fileID: 2139118096}
   - component: {fileID: 2139118101}
+  - component: {fileID: 2139118102}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -3949,6 +3951,14 @@ MonoBehaviour:
   RestartButton: {fileID: 1181051166}
   my_head: {fileID: 963194229}
   GameOverText: {fileID: 1726838225}
+--- !u!81 &2139118102
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139118095}
+  m_Enabled: 0
 --- !u!33 &200195412491459431
 MeshFilter:
   m_ObjectHideFlags: 0

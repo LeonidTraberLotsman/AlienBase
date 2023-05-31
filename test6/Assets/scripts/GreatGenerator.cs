@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GreatGenerator : MonoBehaviour
 {
+    public GameObject MarkerPrefab;
+
     public Transform CityCenter;
     public GameObject road_prefab;
 
@@ -260,6 +262,11 @@ public class GreatGenerator : MonoBehaviour
         foreach (building_point build in build_points)
         {
             spawnGrey(build.point, build.state);
+            if (!build.state)
+            {
+                GameObject marker = Instantiate(MarkerPrefab);
+                marker.transform.position = build.point;
+            } 
             
         }
         
@@ -299,10 +306,18 @@ public class GreatGenerator : MonoBehaviour
         {
             //d++;
             GameObject building = Instantiate(prefab);
-            building.transform.position = point + new Vector3(0, 0, 25);
-            building.transform.Rotate(Vector3.up * 90);
+            building.transform.position = point + new Vector3(-25, 0, 0);
+            //building.transform.Rotate(Vector3.up * 90);
 
             building.GetComponent<GreyBuilding>().Generate(this);
+        }
+        else
+        {
+        //    GameObject building = Instantiate(prefab);
+        //    building.transform.position = point + new Vector3(0, 0, 25);
+        //    building.transform.Rotate(Vector3.up * 90);
+
+        //    building.GetComponent<GreyBuilding>().Generate(this);
         }
     }
     void spawnGrey(Vector3 point,bool turned)
